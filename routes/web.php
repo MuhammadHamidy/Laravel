@@ -6,13 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Signin', function () {
-    return view('signin');
-});
 
-Route::get('/Signup', function () {
-    return view('signup');
-});
 
 Route::get('/blog', function () {
     return view('blog');
@@ -32,4 +26,25 @@ Route::get('/author/hamid', function ($name = 'Hamidy') {
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
+});
+
+Route::get('/', function () {
+    return view('');
+});
+
+Route::get('/profile', function () {    
+    return "Admin Page";})
+    ->middleware('auth');
+
+    use App\Http\Controllers\UserController;
+
+Route::post('/signup', [UserController::class, 'signup']);
+Route::post('/signin', [UserController::class, 'signin']);
+
+Route::get('/signup', function () {
+    return view('signup'); // Mengembalikan halaman register
+});
+
+Route::get('/signin', function () {
+    return view('signin'); // Mengembalikan halaman login
 });
